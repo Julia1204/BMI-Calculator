@@ -30,40 +30,16 @@ const HomeScreen = () => {
     const heightRegex = /^\d+(\.\d+)?$/;
     const ageRegex = /^[1-9]\d*$/;
 
-    if (!weight) {
-      setSnackbarMessage('Wpisz wagę');
+    if (!weight || !height || !age) {
+      setSnackbarMessage('Field is empty');
       setSnackbarVisible(true);
       return;
     }
-    if (!height) {
-      setSnackbarMessage('Wpisz wzrost');
-      setSnackbarVisible(true);
-      return;
-    }
-    if (!age) {
-      setSnackbarMessage('Wpisz wiek');
-      setSnackbarVisible(true);
-      return;
-    }
-
-    if (!validateInput(weight, weightRegex)) {
-      setSnackbarMessage('Waga musi być liczbą dodatnią');
-      setSnackbarVisible(true);
-      return;
-    }
-
-    if (!validateInput(height, heightRegex)) {
-      setSnackbarMessage('Wzrost musi być liczbą dodatnią');
-      setSnackbarVisible(true);
-      return;
-    }
-
-    if (!validateInput(age, ageRegex)) {
-      setSnackbarMessage('Wiek musi być liczbą dodatnią');
-      setSnackbarVisible(true);
-      return;
-    }
-
+    if (!validateInput(weight, weightRegex) ||
+      !validateInput(height, heightRegex) ||
+      !validateInput(age, ageRegex)) {
+        return;
+      }
     setSnackbarVisible(false);
     const weightValue = parseFloat(weight) || 0;
     const heightValue = parseFloat(height) || 0;
